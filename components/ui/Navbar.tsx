@@ -16,7 +16,7 @@ export const Navbar = () => {
 		backgroundColor: theme?.colors.gray900.value,
 	}
 
-	return (
+	return (		
 		<div style={ styles }>
 			<Image 
 				src={ 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png' }
