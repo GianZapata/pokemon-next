@@ -112,7 +112,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		// 	{ params: { id: '1'} },
 		// 	{ params: { id: '2'} }
 		// ],
-		fallback: false
+		// fallback: false // Fallback sirve para que el navegador no tenga que descargar todas las páginas	
+		fallback: 'blocking'
 	}
 }
 
@@ -121,8 +122,19 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	
 	const pokemon = await getPokemonInfo(id)
 
+	// Si el data es nul no existe el pokemon y se redirige a la pagina de inicio
+	if(!pokemon) { 
+		return { 
+			redirect: {
+				destination: '/',
+				permanent: false
+			}
+		}
+	}
+
 	return { 
-		props: { pokemon  }
+		props: { pokemon  },
+		revalidate: 86400 // Revalidation: Sirve para que el navegador no vuelva a pedir la info de la pagina
 	}
 }
 
