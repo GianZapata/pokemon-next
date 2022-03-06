@@ -112,7 +112,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 	return {
 		paths,
-		fallback: false
+		// fallback: false
+		fallback: 'blocking'
 	}
 }
 
@@ -121,6 +122,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	const { name } = params as { name: string}
 	
 	const pokemon = await getPokemonInfo(name)
+
+	// Si el data es nul no existe el pokemon y se redirige a la pagina de inicio
+	if(!pokemon) { 
+		return { 
+			redirect: {
+				destination: '/',
+				permanent: false
+			}
+		}
+	}
 
 	return { 
 		props: { pokemon  }
