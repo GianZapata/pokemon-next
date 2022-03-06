@@ -1,13 +1,8 @@
 import { Spacer, Text, useTheme, Link, Input, FormElement } from '@nextui-org/react'
 import Image from 'next/image'
 import NextLink from 'next/link'
-import { CSSProperties, Dispatch, FC, SetStateAction } from 'react'
-import { SmallPokemon } from '../../interfaces'
+import { CSSProperties, FC } from 'react'
 import { useRouter } from 'next/router';
-// interface Props { 
-// 	// setSearchPokemons: Dispatch<SetStateAction<SmallPokemon[]>>
-// 	// pokemons: SmallPokemon[]
-// }
 
 export const Navbar: FC = () => {
 
@@ -23,12 +18,6 @@ export const Navbar: FC = () => {
 		justifyContent: 'start',
 		padding: '20px 15px',
 		backgroundColor: theme?.colors.gray900.value,
-	}
-
-	const searchPokemons = (e: React.ChangeEvent<FormElement>) => {
-		// const pokemonName = e.target.value.toLowerCase()		
-		// const filteredData = pokemons.filter( pokemon => pokemon.name.toLowerCase().includes(pokemonName) )
-		// setSearchPokemons(filteredData)		
 	}
 
 	return (		
@@ -48,23 +37,7 @@ export const Navbar: FC = () => {
 			
 			<Spacer css={{ 
 				flex: 1,
-			}}/>
-			{ 
-				router.asPath === '/' && (					
-					<Input 	
-						onChange={ searchPokemons }
-						aria-label='Buscar pokemón'	
-						placeholder='Buscar pokémon...' 
-						size={ 'md' }
-						clearable
-						type="search"
-						bordered
-						css={{ 
-							marginRight: '20px',
-						}}				
-					/>
-				)
-			}
+			}}/>	
 			<NextLink href={'/favorites'} passHref>
 				<Link>
 					<Text color='white'>Favoritos</Text>    			

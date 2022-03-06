@@ -7,15 +7,13 @@ import confetti from 'canvas-confetti'
 
 import { localFavorites } from '../../utils'
 import { MainLayout } from '../../components/layouts'
-import { pokeApi } from '../../api'
 import { Pokemon } from '../../interfaces'
-
+import { getPokemonInfo } from '../../utils';
 interface Props { 
 	pokemon: Pokemon;
 }
 
 const PokemonPage: NextPage<Props> = ({ pokemon }) => {
-
 	const [isInFavorites, setIsInFavorites] = useState( localFavorites.existInFavorites(pokemon.id) )
 
 	const onToggleFavorite = () => { 
@@ -121,10 +119,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	const { id } = params as { id: string}
 	
-	const { data } = await pokeApi.get<Pokemon>(`/pokemon/${id}`)
+	const pokemon = await getPokemonInfo(id)
 
 	return { 
-		props: { pokemon: data }
+		props: { pokemon  }
 	}
 }
 
