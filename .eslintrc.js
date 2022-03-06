@@ -7,7 +7,7 @@ module.exports = {
 		'eslint:recommended',
 		'plugin:react/recommended',
 		'plugin:@typescript-eslint/recommended',
-		'next/core-web-vitals'
+		'next/core-web-vitals',
 	],
 	'parser': '@typescript-eslint/parser',
 	'parserOptions': {
@@ -22,18 +22,11 @@ module.exports = {
 		'@typescript-eslint'
 	],
 	'rules': {
-		'indent': [
-			'error',
-			'tab'
-		],
 		'linebreak-style': 0,
 		'quotes': [
 			'error',
 			'single'
-		],
-		'semi': [
-			'error',
-			'never'
 		]
 	}
 }
+	

@@ -5,16 +5,20 @@ import { pokeApi } from '../api'
 import { PokemonListResponse, SmallPokemon } from '../interfaces'
 import { MainLayout } from '../components/layouts'
 import { PokeCard } from '../components/pokemon'
+import { useState } from 'react';
 
 interface Props { 
 	pokemons: SmallPokemon[]	
 }
 
 const HomePage: NextPage<Props> = ({ pokemons }) => {	
+
+	const [searchPokemons, setSearchPokemons] = useState<SmallPokemon[]>(pokemons)
+
 	return (
-		<MainLayout title='Listado de Pokémon'>
+		<MainLayout title='Listado de Pokémon' pokemons={ pokemons } setSearchPokemons={ setSearchPokemons }>
 			<Grid.Container gap={ 2 } justify="flex-start">
-				{ pokemons.map( pokemon => <PokeCard key={ pokemon.id } pokemon={ pokemon }/>  )}
+				{ searchPokemons.map( pokemon => <PokeCard key={ pokemon.id } pokemon={ pokemon } />  )}
 			</Grid.Container>
 		</MainLayout>
 	)

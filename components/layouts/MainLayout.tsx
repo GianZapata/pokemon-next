@@ -1,17 +1,20 @@
-import { FC, CSSProperties } from 'react'
+import { FC, CSSProperties, SetStateAction, Dispatch } from 'react'
 
 import Head from 'next/head'
 import { Navbar } from '../ui'
+import { SmallPokemon } from '../../interfaces/pokemon-list';
 
 interface MainLayoutProps { 
    title?: string
+	pokemons?: SmallPokemon[]
+	setSearchPokemons?: Dispatch<SetStateAction<SmallPokemon[]>>
 }
 
 const mainStyles : CSSProperties = {
 	padding: '0 20px',
 }
 
-export const MainLayout : FC<MainLayoutProps> = ({ children, title }) => {
+export const MainLayout : FC<MainLayoutProps> = ({ children, title, pokemons, setSearchPokemons }) => {
 	return (
 		<>
 			<Head>
